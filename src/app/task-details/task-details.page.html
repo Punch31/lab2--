@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Додавання завдання</ion-title>
+  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button default-href="#"></ion-back-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <ion-item>
+      <ion-input formControlName="title"  label="Назва завдання" labelPlacement="floating" placeholder="Введіть назву завдання"></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-textarea formControlName="description" label="Опис" labelPlacement="floating" placeholder="Введіть опис"></ion-textarea>
+  </ion-item>
+  <ion-button expand="full" type="submit" [disabled]="taskForm.invalid">Save</ion-button>
+  </form>
+</ion-content>
