@@ -1,20 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Todo-List
+      Todo List
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list [inset]="true">
-    <ion-item>
+    <ion-item *ngFor="let task of tasksn ">
       <ion-label>
-        <h2>Task1</h2>
-        <p>Description of task</p>
+        <h2 [class.complited]="task.complited">{{task.title}}</h2>
+        <p>{{task.description}}</p>
       </ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
-      <ion-button fill="clear" color="danger">
+      <ion-checkbox slot="end" [checked]="task.complited" (ionChange)="toggleTask(task)"></ion-checkbox>
+      <ion-button fill="clear" color="danger" (click)="deleteTask(task.id)">
         <ion-icon name="trash">
 
         </ion-icon>

@@ -31,10 +31,23 @@ export class TaskSevice {
   }
 
 
-  async addTask(task: Task) {
+  async addTask(task: Task): Promise<any> {
     const tasks = await this.getTasks();
     tasks.push(task)
     return this._storage?.set(this.TASK_KEY, tasks)
 
   }
+
+  async deleteTask(id: number): Promise<any> {
+    let tasks = await this.getTasks();
+    tasks = tasks.filter(task => task.id !== id);
+    return this._storage?.set(this.TASK_KEY, tasks)
+  }
+
+  async updateTask(updatedTask: Task): Promise<any>{
+    let tasks = await this.getTasks();
+    tasks = tasks.map(task => task.id === updatedTask.id ? updatedTask: task);
+    return this._storage?.set(this.TASK_KEY, tasks)
+  }
 }
+ 
