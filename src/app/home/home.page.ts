@@ -37,4 +37,23 @@ export class HomePage {
     await this.taskService.updateTask(task)
     this.loadTasks(); 
   }
+
+  editingTask: Task | null = null;
+
+  startEditing(task: Task) {
+    this.editingTask = { ...task }; // создаём копию задачи для редактирования
+  }
+  
+  cancelEditing() {
+    this.editingTask = null;
+  }
+  
+  async saveEditedTask() {
+    if (this.editingTask) {
+      await this.taskService.updateTask(this.editingTask);
+      this.editingTask = null;
+      this.loadTasks();
+    }
+  }
+  
 }
